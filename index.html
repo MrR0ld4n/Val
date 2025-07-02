@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Diario</title>
+</head>
+<body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:black;">
+  <video id="videoPlayer" width="100%" controls autoplay></video>
+
+  <script>
+    const videos = [
+      'video1.mp4',
+      'video2.mp4',
+      'video3.mp4'
+      // Agrega más nombres de archivo aquí
+    ];
+
+    let current = 0;
+    const player = document.getElementById('videoPlayer');
+
+    function playVideo(index) {
+      player.src = videos[index];
+      player.load();
+      player.play();
+    }
+
+    player.addEventListener('ended', () => {
+      current = (current + 1) % videos.length; // ir al siguiente, y volver al primero al final
+      playVideo(current);
+    });
+
+    // Inicia reproducción del primer video
+    playVideo(current);
+  </script>
+</body>
+</html>
